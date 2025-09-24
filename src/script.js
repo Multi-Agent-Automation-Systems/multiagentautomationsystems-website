@@ -678,7 +678,7 @@ function initParallax() {
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallax = scrolled * 0.5;
-    watermark.style.transform = `translate(-50%, calc(-50% + ${parallax}px))`;
+    watermark.style.transform = `translate(0%, calc(-50% + ${parallax}px))`;
   });
 }
 

@@ -2203,7 +2203,7 @@ textarea:focus {
   }
   
   .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -5px);
+    transform: rotate(-45deg) translate(5px, -5px);
   }
   
   /* Prevent body scroll when menu is open */

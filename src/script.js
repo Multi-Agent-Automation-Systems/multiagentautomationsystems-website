@@ -65,6 +65,23 @@ if (signInBtn && authModal) {
   });
 }
 
+// Mobile sign in button
+const mobileSignInBtn = document.querySelector('.sign-in-btn-mobile');
+if (mobileSignInBtn && authModal) {
+  mobileSignInBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Close mobile menu first
+    if (hamburger && navMenu) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.classList.remove('mobile-menu-open');
+    }
+    // Then open auth modal
+    authModal.classList.add('active');
+    trapFocus(authModal);
+  });
+}
+
 // Auth card flip functionality
 const authCard = document.querySelector('.auth-card');
 const authToggles = document.querySelectorAll('.auth-toggle');

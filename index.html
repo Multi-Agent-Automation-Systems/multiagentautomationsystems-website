@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="public/maas-smaller-logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Agent Automation Systems Inc. (MAAS)</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+ <!-- Header -->
+<header class="header">
+  <nav class="nav">
+    <div class="nav-container">
+      <!-- LEFT: Logo -->
+      <div class="nav-left">
+        <a href="#home" class="nav-brand" aria-label="MAAS Home">
+          <img src="public/maas-logo.jpg" alt="MAAS Logo" class="logo" />
+        </a>
+      </div>
+
+      <!-- CENTER: Menu -->
+      <ul class="nav-center nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#technology" class="nav-link">Our Technology</a></li>
+        <li><a href="#departments" class="nav-link">Departments</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#careers" class="nav-link">Careers</a></li>
+        <li><a href="#contact" class="nav-link contact-link contact-btn">Contact</a></li>
+        <li><button class="sign-in-btn-mobile" type="button">Sign In</button></li>
+      </ul>
+
+      <!-- RIGHT: Sign In + Hamburger -->
+      <div class="nav-right">
+        <button class="sign-in-btn" type="button">Sign In</button>
+        <button class="hamburger" type="button" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="contactTitle">Get In Touch</h3>
+        <div class="contact-details">
+          <h4>Multi-Agent Automation Systems Inc. (MAAS)</h4>
+          <p><strong>Email:</strong> <a href="mailto:maas@multiagentautomationsystems.com">maas@multiagentautomationsystems.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+17806800286">+1 (780) 680-0286</a></p>
+          <p><strong>Location:</strong> Edmonton, Alberta, Canada</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <div class="auth-modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <div class="auth-card">
+          <!-- Sign In Face -->
+          <div class="auth-face auth-signin active">
+            <div class="auth-header">
+              <h3 id="authTitle">Sign In</h3>
+              <button class="auth-toggle" data-target="signup">Sign Up</button>
+            </div>
+            <form class="auth-form" id="signinForm">
+              <div class="form-group">
+                <label for="signinEmail">Email or Username</label>
+                <input type="text" id="signinEmail" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="signinPassword">Password</label>
+                <input type="password" id="signinPassword" name="password" required>
+              </div>
+              <button type="submit" class="auth-submit">Sign In</button>
+              <a href="#" class="forgot-password">Forgot password?</a>
+            </form>
+          </div>
+
+          <!-- Sign Up Face -->
+          <div class="auth-face auth-signup">
+            <div class="auth-header">
+              <h3>Sign Up</h3>
+              <button class="auth-toggle" data-target="signin">Sign In</button>
+            </div>
+            <div class="signup-scroll-container">
+              <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                  <label for="signupName">Full Name</label>
+                  <input type="text" id="signupName" name="name" pattern="[A-Za-z\s]+" required>
+                  <span class="error-message">Please enter letters only</span>
+                </div>
+                <div class="form-group">
+                  <label for="signupEmail">Email</label>
+                  <input type="email" id="signupEmail" name="email" required>
+                  <span class="error-message">Please enter a valid email</span>
+                </div>
+                <div class="form-group">
+                  <label for="signupPhone">Phone</label>
+                  <input type="tel" id="signupPhone" name="phone" pattern="^\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$" required>
+                  <span class="error-message">Please enter a valid North American phone number</span>
+                </div>
+                <div class="form-group">
+                  <label for="signupAddress">Address</label>
+                  <textarea id="signupAddress" name="address" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="signupUsername">Username</label>
+                  <input type="text" id="signupUsername" name="username" pattern="^[A-Za-z0-9_]{3,20}$" required>
+                  <span class="error-message">3-20 characters, letters/numbers/underscore only</span>
+                </div>
+                <div class="form-group">
+                  <label for="signupPassword">Password</label>
+                  <input type="password" id="signupPassword" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$" required>
+                  <span class="error-message">Minimum 8 characters with at least 1 letter and 1 number</span>
+                </div>
+              </form>
+            </div>
+            <div class="signup-actions">
+              <button type="submit" form="signupForm" class="auth-submit">Create Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="successToast">
+      <span class="toast-message"></span>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+      <div class="hero-background">
+        <canvas id="circuitCanvas"></canvas>
+        <div class="hero-watermark">
+          <img src="public/maas-smaller-logo.jpg" alt="MAAS Watermark" class="watermark-logo" />
+        </div>
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title">Revolutionizing Business Through Intelligent Automation</h1>
+        <p class="hero-tagline">Multi-Agent Automation Systems Inc. delivers cutting-edge AI solutions that transform how organizations operate, scale, and succeed in the digital age.</p>
+        <div class="hero-cta">
+          <a href="#departments" class="cta-button">Explore Our Services</a>
+          <a href="#technology" class="cta-button-secondary">Learn About Our Technology</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Technology Section -->
+    <section id="technology" class="technology">
+      <div class="container">
+        <h2 class="section-title">Our Technology</h2>
+        <p class="section-intro">
+          At MAAS, we leverage advanced multi-agent systems and artificial intelligence to create sophisticated automation solutions. Our proprietary technology stack enables seamless integration across platforms while maintaining security, scalability, and performance.
+        </p>
+        <div class="tech-tiles">
+          <div class="tech-tile" data-target="websites">
+            <div class="tile-animation websites-animation">
+              <div class="browser-frame">
+                <div class="browser-bar"></div>
+                <div class="browser-content">
+                  <div class="content-block block-1"></div>
+                  <div class="content-block block-2"></div>
+                  <div class="content-block block-3"></div>
+                </div>
+              </div>
+            </div>
+            <h3>Websites</h3>
+            <p>Full-stack web solutions</p>
+          </div>
+
+          <div class="tech-tile" data-target="ai-bots">
+            <div class="tile-animation bots-animation">
+              <div class="node-graph">
+                <div class="node node-1"></div>
+                <div class="node node-2"></div>
+                <div class="node node-3"></div>
+                <div class="connection conn-1"></div>
+                <div class="connection conn-2"></div>
+                <div class="chat-bubble"></div>
+              </div>
+            </div>
+            <h3>AI Bots</h3>
+            <p>Intelligent automation agents</p>
+          </div>
+
+          <div class="tech-tile" data-target="marketing">
+            <div class="tile-animation marketing-animation">
+              <div class="chart-container">
+                <div class="chart-bar bar-1"></div>
+                <div class="chart-bar bar-2"></div>
+                <div class="chart-bar bar-3"></div>
+                <div class="chart-bar bar-4"></div>
+                <div class="radial-highlight"></div>
+              </div>
+            </div>
+            <h3>Marketing</h3>
+            <p>Data-driven campaigns</p>
+          </div>
+
+          <div class="tech-tile" data-target="workflows">
+            <div class="tile-animation workflows-animation">
+              <div class="workflow-diagram">
+                <div class="workflow-path path-1"></div>
+                <div class="workflow-path path-2"></div>
+                <div class="workflow-packet packet-1"></div>
+                <div class="workflow-packet packet-2"></div>
+                <div class="workflow-packet packet-3"></div>
+              </div>
+            </div>
+            <h3>Workflows</h3>
+            <p>Process automation</p>
+          </div>
+
+          <div class="tech-tile" data-target="remote">
+            <div class="tile-animation remote-animation">
+              <div class="server-icon">
+                <div class="signal-ring ring-1"></div>
+                <div class="signal-ring ring-2"></div>
+                <div class="signal-ring ring-3"></div>
+                <div class="server-core"></div>
+              </div>
+            </div>
+            <h3>Remote</h3>
+            <p>Distributed solutions</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departments" class="departments">
+      <div class="container">
+        <h2 class="section-title">Our Departments</h2>
+        
+        <div class="department-card" id="websites">
+          <div class="department-grid">
+            <div class="department-description">
+              <h3 class="department-title">Websites Department</h3>
+              <p class="department-text">
+                We deliver production-ready front end and back end solutions, including comprehensive domain registration and DNS management, secure hosting with SSL certificates and CDN integration. Our websites can optionally include 24/7 AI Bots developed in partnership with our AI Bots department for enhanced user engagement and customer support.
+              </p>
+              <p class="department-text">
+                Every project includes a detailed Administrator's Manual for ongoing maintenance, search-engine-friendly sitemap generation, security hardening through HTTPS and Content Security Policy implementation, accessibility conformance testing, performance optimization, analytics integration, and complete handover documentation with version control setup and deployment notes.
+              </p>
+              <a href="mailto:web@multiagentautomationsystems.com" class="department-email">web@multiagentautomationsystems.com</a>
+            </div>
+            
+            <div class="department-animation">
+              <div class="websites-bg-animation"></div>
+              <button class="inspect-cases-btn" data-inspect-cases="websites" type="button">Inspect Cases</button>
+            </div>
+            
+            <div class="department-results">
+              <h4>What You Get</h4>
+              <ul>
+                <li>Complete web solution with secure hosting, SSL certificates, and CDN integration</li>
+                <li>Optional AI bot integration for 24/7 customer support</li>
+                <li>Comprehensive Administrator's Manual for ongoing maintenance</li>
+                <li>Search-engine-friendly sitemap generation</li>
+                <li>Security hardening with HTTPS and Content Security Policy</li>
+                <li>Accessibility conformance testing and compliance</li>
+                <li>Performance optimization and analytics integration</li>
+                <li>Complete handover documentation with version control setup</li>
+                <li>Deployment guides and ongoing support recommendations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="department-card" id="ai-bots">
+          <div class="department-grid">
+            <div class="department-description">
+              <h3 class="department-title">AI Bots Department</h3>
+              <p class="department-text">
+                We design and integrate sophisticated automated systems including website chatbots for customer service, voice bots for phone systems, email-triage bots for inbox management, RPA and task automation bots, data-extraction bots for processing documents, lead-qualification bots for sales teams, internal helpdesk bots for employee support, and workflow-coordination bots that orchestrate complex business processes.
+              </p>
+              <p class="department-text">
+                Each implementation includes a comprehensive Administrator's Manual for knowledge base expansion and maintenance, plus a detailed Bot Map documenting intents, conversation routes, and escalation procedures to ensure seamless operation and continuous improvement.
+              </p>
+              <a href="mailto:bots@multiagentautomationsystems.com" class="department-email">bots@multiagentautomationsystems.com</a>
+            </div>
+            
+            <div class="department-animation">
+              <div class="bots-bg-animation">
+                <div class="node-network">
+                  <div class="network-node node-a"></div>
+                  <div class="network-node node-b"></div>
+                  <div class="network-node node-c"></div>
+                  <div class="network-connection conn-ab"></div>
+                  <div class="network-connection conn-bc"></div>
+                  <div class="network-pulse pulse-1"></div>
+                  <div class="network-pulse pulse-2"></div>
+                </div>
+              </div>
+              <button class="inspect-cases-btn" data-inspect-cases="ai-bots" type="button">Inspect Cases</button>
+            </div>
+            
+            <div class="department-results">
+              <h4>What You Get</h4>
+              <ul>
+                <li>Website chatbots for customer service and support</li>
+                <li>Voice bots for phone system integration</li>
+                <li>Email-triage bots for inbox management</li>
+                <li>RPA and task automation bots</li>
+                <li>Data-extraction bots for document processing</li>
+                <li>Lead-qualification bots for sales teams</li>
+                <li>Internal helpdesk bots for employee support</li>
+                <li>Workflow-coordination bots for complex processes</li>
+                <li>Comprehensive Administrator's Manual for knowledge base expansion</li>
+                <li>Detailed Bot Map with intents, routes, and escalation procedures</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="department-card" id="marketing">
+          <div class="department-grid">
+            <div class="department-description">
+              <h3 class="department-title">Marketing Department</h3>
+              <p class="department-text">
+                Our advanced, data-driven marketing services encompass brand development and creative strategy, comprehensive SEO and technical SEO optimization, content strategy and creation, social media management, paid advertising across search, social, and display networks, email and SMS marketing campaigns, affiliate and influencer partnership management, marketing automation funnel development, landing page optimization, analytics and attribution modeling, A/B testing, and conversion rate optimization.
+              </p>
+              <p class="department-text">
+                All campaigns are outcome-focused with privacy-safe tracking methodologies that respect user data while delivering measurable results and sustainable growth for your business.
+              </p>
+              <a href="mailto:marketing@multiagentautomationsystems.com" class="department-email">marketing@multiagentautomationsystems.com</a>
+            </div>
+            
+            <div class="department-animation">
+              <div class="marketing-bg-animation">
+                <div class="growth-chart">
+                  <div class="chart-line line-1"></div>
+                  <div class="chart-line line-2"></div>
+                  <div class="chart-line line-3"></div>
+                  <div class="growth-highlight"></div>
+                </div>
+              </div>
+              <button class="inspect-cases-btn" data-inspect-cases="marketing" type="button">Inspect Cases</button>
+            </div>
+            
+            <div class="department-results">
+              <h4>What You Get</h4>
+              <ul>
+                <li>Brand development and creative strategy</li>
+                <li>Comprehensive SEO and technical SEO optimization</li>
+                <li>Content strategy and creation</li>
+                <li>Social media management across platforms</li>
+                <li>Paid advertising on search, social, and display networks</li>
+                <li>Email and SMS marketing campaigns</li>
+                <li>Affiliate and influencer partnership management</li>
+                <li>Marketing automation funnel development</li>
+                <li>Landing page optimization and A/B testing</li>
+                <li>Analytics and attribution modeling</li>
+                <li>Privacy-safe tracking and conversion rate optimization</li>
+                <li>Detailed performance reporting with actionable insights</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="department-card" id="workflows">
+          <div class="department-grid">
+            <div class="department-description">
+              <h3 class="department-title">Workflows Department</h3>
+              <p class="department-text">
+                We automate critical business processes including customer acquisition and onboarding sequences, customer success and retention programs, comprehensive user lifecycle management, ticketing and support workflows, sales pipeline automation with CPQ integration, billing and collections processes, HR recruiting and employee onboarding, and vendor procurement flows.
+              </p>
+              <p class="department-text">
+                Our solutions integrate seamlessly with existing CRMs, ERPs, ticketing systems, identity management platforms, and messaging services. Every workflow includes robust error handling, comprehensive observability, defined SLAs, and complete documentation for ongoing maintenance and optimization.
+              </p>
+              <a href="mailto:workflows@multiagentautomationsystems.com" class="department-email">workflows@multiagentautomationsystems.com</a>
+            </div>
+            
+            <div class="department-animation">
+              <div class="workflows-bg-animation">
+                <div class="flow-diagram">
+                  <div class="flow-pipe pipe-1"></div>
+                  <div class="flow-pipe pipe-2"></div>
+                  <div class="flow-packet packet-a"></div>
+                  <div class="flow-packet packet-b"></div>
+                  <div class="flow-packet packet-c"></div>
+                </div>
+              </div>
+              <button class="inspect-cases-btn" data-inspect-cases="workflows" type="button">Inspect Cases</button>
+            </div>
+            
+            <div class="department-results">
+              <h4>What You Get</h4>
+              <ul>
+                <li>Customer acquisition and onboarding sequence automation</li>
+                <li>Customer success and retention program workflows</li>
+                <li>Comprehensive user lifecycle management</li>
+                <li>Ticketing and support workflow automation</li>
+                <li>Sales pipeline automation with CPQ integration</li>
+                <li>Billing and collections process automation</li>
+                <li>HR recruiting and employee onboarding workflows</li>
+                <li>Vendor procurement flow automation</li>
+                <li>Seamless integration with CRM, ERP, and ticketing systems</li>
+                <li>Robust error handling and comprehensive observability</li>
+                <li>Defined SLAs and complete documentation</li>
+                <li>Ongoing maintenance and optimization support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="department-card" id="remote">
+          <div class="department-grid">
+            <div class="department-description">
+              <h3 class="department-title">Remote Department</h3>
+              <p class="department-text">
+                We solve both low-level technical issues and high-level strategic challenges remotely, including system diagnostics and troubleshooting, infrastructure stabilization, architecture design and review, emergency debugging and incident response, performance tuning and optimization, and development of bespoke automation solutions.
+              </p>
+              <p class="department-text">
+                All remote work is conducted through secure access protocols with strict change control procedures and rollback capabilities. Every engagement includes detailed reports, comprehensive remediation plans, and optional ongoing on-call support to ensure continued system reliability and performance.
+              </p>
+              <a href="mailto:remote@multiagentautomationsystems.com" class="department-email">remote@multiagentautomationsystems.com</a>
+            </div>
+            
+            <div class="department-animation">
+              <div class="remote-bg-animation">
+                <div class="signal-tower">
+                  <div class="tower-core"></div>
+                  <div class="signal-wave wave-1"></div>
+                  <div class="signal-wave wave-2"></div>
+                  <div class="signal-wave wave-3"></div>
+                </div>
+              </div>
+              <button class="inspect-cases-btn" data-inspect-cases="remote" type="button">Inspect Cases</button>
+            </div>
+            
+            <div class="department-results">
+              <h4>What You Get</h4>
+              <ul>
+                <li>System diagnostics and troubleshooting</li>
+                <li>Infrastructure stabilization and optimization</li>
+                <li>Architecture design and review</li>
+                <li>Emergency debugging and incident response</li>
+                <li>Performance tuning and optimization</li>
+                <li>Development of bespoke automation solutions</li>
+                <li>Secure access protocols with strict change control</li>
+                <li>Rollback capabilities and safety procedures</li>
+                <li>Detailed incident reports and remediation plans</li>
+                <li>Root cause analysis and prevention strategies</li>
+                <li>Optional ongoing on-call support</li>
+                <li>Defined response times and SLA guarantees</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Gallery Modals -->
+    <div id="cases-modal-websites" class="modal-overlay case-gallery-modal">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3>Websites — Case Gallery</h3>
+        <div class="cases-grid"></div>
+      </div>
+    </div>
+
+    <div id="cases-modal-ai-bots" class="modal-overlay case-gallery-modal">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3>AI Bots — Case Gallery</h3>
+        <div class="cases-grid"></div>
+      </div>
+    </div>
+
+    <div id="cases-modal-marketing" class="modal-overlay case-gallery-modal">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3>Marketing — Case Gallery</h3>
+        <div class="cases-grid"></div>
+      </div>
+    </div>
+
+    <div id="cases-modal-workflows" class="modal-overlay case-gallery-modal">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3>Workflows — Case Gallery</h3>
+        <div class="cases-grid"></div>
+      </div>
+    </div>
+
+    <div id="cases-modal-remote" class="modal-overlay case-gallery-modal">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3>Remote — Case Gallery</h3>
+        <div class="cases-grid"></div>
+      </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast">
+      <div class="toast-message">Success!</div>
+    </div>
+
+    <!-- Case Gallery Modals -->
+    <div class="modal-overlay case-gallery-modal" id="websitesCaseModal" role="dialog" aria-modal="true">
+      <div class="modal-content case-gallery-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3>Websites — Case Gallery</h3>
+        <div class="case-gallery-grid">
+          <div class="case-placeholder">Cases will appear here soon.</div>
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-prev" disabled>Previous</button>
+          <button class="gallery-next" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay case-gallery-modal" id="ai-botsCaseModal" role="dialog" aria-modal="true">
+      <div class="modal-content case-gallery-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3>AI Bots — Case Gallery</h3>
+        <div class="case-gallery-grid">
+          <div class="case-placeholder">Cases will appear here soon.</div>
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-prev" disabled>Previous</button>
+          <button class="gallery-next" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay case-gallery-modal" id="marketingCaseModal" role="dialog" aria-modal="true">
+      <div class="modal-content case-gallery-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3>Marketing — Case Gallery</h3>
+        <div class="case-gallery-grid">
+          <div class="case-placeholder">Cases will appear here soon.</div>
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-prev" disabled>Previous</button>
+          <button class="gallery-next" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay case-gallery-modal" id="workflowsCaseModal" role="dialog" aria-modal="true">
+      <div class="modal-content case-gallery-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3>Workflows — Case Gallery</h3>
+        <div class="case-gallery-grid">
+          <div class="case-placeholder">Cases will appear here soon.</div>
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-prev" disabled>Previous</button>
+          <button class="gallery-next" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay case-gallery-modal" id="remoteCaseModal" role="dialog" aria-modal="true">
+      <div class="modal-content case-gallery-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3>Remote — Case Gallery</h3>
+        <div class="case-gallery-grid">
+          <div class="case-placeholder">Cases will appear here soon.</div>
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-prev" disabled>Previous</button>
+          <button class="gallery-next" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+          <!-- General FAQ -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What makes MAAS different from other automation companies?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>MAAS combines deep technical expertise across multiple domains with a holistic approach to business automation. Unlike companies that specialize in single solutions, we integrate websites, AI bots, marketing automation, workflow optimization, and remote support into cohesive systems that work together seamlessly. Our multi-agent approach means each component can communicate and coordinate with others, creating intelligent automation ecosystems rather than isolated tools. We also provide comprehensive documentation, training, and ongoing support to ensure long-term success.</p>
+            </div>
+          </div>
+
+          <!-- Websites Department FAQ -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What types of websites does the Websites Department create and what's included?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We create everything from corporate websites and e-commerce platforms to complex web applications with custom functionality. Every project includes domain registration, DNS management, secure hosting with SSL certificates, CDN integration, and optional AI bot integration for 24/7 customer support. Our deliverables include a comprehensive Administrator's Manual, SEO-optimized sitemaps, security hardening, accessibility compliance testing, and complete handover documentation with version control setup. Typical projects range from 4-12 weeks depending on complexity, with ongoing maintenance and support packages available.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do you ensure website security and performance?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Security is built into every layer of our websites through HTTPS enforcement, Content Security Policy implementation, regular security audits, and secure coding practices. Performance optimization includes CDN integration, image optimization, code minification, caching strategies, and database optimization. We conduct thorough testing across devices and browsers, implement analytics for ongoing monitoring, and provide detailed performance reports. All websites are delivered with comprehensive security documentation and performance benchmarks, plus recommendations for ongoing maintenance and monitoring.</p>
+            </div>
+          </div>
+
+          <!-- AI Bots Department FAQ -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What types of AI bots can you develop and how do they integrate with existing systems?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We develop website chatbots, voice bots for phone systems, email-triage bots, RPA task automation, data-extraction bots, lead-qualification systems, internal helpdesk bots, and workflow-coordination bots. Each bot integrates seamlessly with your existing CRM, database, communication platforms, and business applications through secure APIs and webhooks. Our bots are trained on your specific business context and can handle complex multi-step processes while escalating appropriately to human agents. Every implementation includes an Administrator's Manual for knowledge base management and a detailed Bot Map documenting conversation flows and escalation procedures.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do you handle data privacy and bot training for AI systems?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Data privacy is paramount in all our AI bot implementations, with strict adherence to GDPR, CCPA, and other relevant privacy regulations. We implement data encryption, secure storage, access controls, and regular privacy audits. Bot training uses anonymized data sets and follows ethical AI principles, with transparent disclosure of bot interactions to users. All customer data remains under your control with clear data ownership agreements, and we provide detailed documentation on data handling procedures. Our bots include built-in privacy safeguards and can be configured to automatically delete sensitive information after processing.</p>
+            </div>
+          </div>
+
+          <!-- Marketing Department FAQ -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What marketing automation services do you provide and how do you measure ROI?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Our marketing automation encompasses email and SMS campaigns, social media management, paid advertising optimization, lead nurturing funnels, landing page testing, and comprehensive analytics. We implement advanced attribution modeling, A/B testing frameworks, and conversion tracking that respects user privacy while providing actionable insights. ROI measurement includes customer acquisition cost analysis, lifetime value calculations, campaign performance metrics, and detailed reporting dashboards. Most clients see measurable improvements in conversion rates and lead quality within 4-6 weeks, with ongoing optimization ensuring continued performance gains and reduced customer acquisition costs.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do you ensure marketing compliance and data privacy?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We implement privacy-first marketing strategies that comply with GDPR, CCPA, CAN-SPAM, and other relevant regulations while maintaining campaign effectiveness. Our systems include consent management, data minimization practices, secure data handling, and transparent privacy policies. All tracking and analytics use privacy-safe methodologies with proper user consent mechanisms and opt-out capabilities. We provide regular compliance audits, documentation of data handling procedures, and training for your team on privacy-compliant marketing practices. Our approach ensures sustainable marketing growth while respecting user privacy and maintaining regulatory compliance.</p>
+            </div>
+          </div>
+
+          <!-- Workflows Department FAQ -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What business processes can you automate and how do you handle system integrations?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We automate customer acquisition, onboarding, success programs, support ticketing, sales pipelines, billing, HR processes, and procurement workflows. Our integration expertise covers CRMs, ERPs, ticketing systems, identity management, messaging platforms, and custom applications through APIs, webhooks, and middleware solutions. Each workflow includes comprehensive error handling, monitoring, alerting, and rollback capabilities. We provide detailed SLA definitions, observability dashboards, and complete documentation for ongoing maintenance. Most workflow implementations show immediate productivity gains with 60-90% reduction in manual processing time and significantly improved accuracy and consistency.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do you ensure workflow reliability and handle system failures?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Reliability is built into every workflow through redundant systems, comprehensive error handling, automated monitoring, and proactive alerting. We implement circuit breakers, retry mechanisms, fallback procedures, and graceful degradation to handle system failures. All workflows include detailed logging, performance monitoring, and health checks with automated recovery procedures where possible. Our implementations include defined SLAs, escalation procedures, and 24/7 monitoring capabilities. We provide detailed incident response procedures, regular system health reports, and ongoing optimization to prevent issues before they impact operations.</p>
+            </div>
+          </div>
+
+          <!-- Remote Department FAQ -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What types of remote support and problem-solving do you provide?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Our remote services range from emergency debugging and system diagnostics to strategic architecture design and performance optimization. We handle infrastructure stabilization, security incident response, database optimization, application troubleshooting, and custom automation development. All remote work uses secure access protocols with strict change control, audit logging, and rollback capabilities. We provide detailed incident reports, remediation plans, root cause analysis, and preventive recommendations. Our team can respond to emergencies within hours and provide ongoing on-call support with defined SLAs for critical systems.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do you ensure security and compliance for remote access?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Remote access security includes multi-factor authentication, encrypted connections, VPN tunneling, session recording, and comprehensive audit logging. We follow strict change control procedures with approval workflows, testing protocols, and automated rollback capabilities. All remote sessions are monitored and logged with detailed activity reports provided after each engagement. We maintain compliance with SOC 2, ISO 27001, and industry-specific regulations through regular security audits and certification maintenance. Our remote access procedures include background checks for all technicians, secure credential management, and immediate access revocation capabilities for enhanced security.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="careers">
+      <div class="container">
+        <h2 class="section-title">Available Positions</h2>
+        <div class="careers-grid">
+          <div class="career-card">
+            <div class="card-front">
+              <h3>Senior Full-Stack Developer</h3>
+              <p>Build cutting-edge web applications and automation systems</p>
+              <div class="career-tags">
+                <span class="tag">4 months</span>
+                <span class="tag">Professional</span>
+                <span class="tag">Remote / Edmonton</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-back-content">
+                <h3>Senior Full-Stack Developer</h3>
+                <div class="career-details">
+                  <p><strong>Contract:</strong> 4 months</p>
+                  <p><strong>Engagement:</strong> Professional</p>
+                </div>
+                <div class="requirements-scroll">
+                  <h4>Requirements</h4>
+                  <ul>
+                    <li>5+ years experience with modern web technologies</li>
+                    <li>Expertise in React, Node.js, and database design</li>
+                    <li>Experience with cloud platforms (AWS, Azure, GCP)</li>
+                    <li>Strong problem-solving and mentoring skills</li>
+                    <li>API development and system integration experience</li>
+                  </ul>
+                </div>
+                <div class="card-actions">
+                  <button class="apply-btn" data-role="Senior Full-Stack Developer">Apply Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="career-card">
+            <div class="card-front">
+              <h3>AI/ML Engineer</h3>
+              <p>Develop intelligent automation agents and machine learning solutions</p>
+              <div class="career-tags">
+                <span class="tag">6 months</span>
+                <span class="tag">Professional</span>
+                <span class="tag">Remote / Edmonton</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-back-content">
+                <h3>AI/ML Engineer</h3>
+                <div class="career-details">
+                  <p><strong>Contract:</strong> 6 months</p>
+                  <p><strong>Engagement:</strong> Professional</p>
+                </div>
+                <div class="requirements-scroll">
+                  <h4>Requirements</h4>
+                  <ul>
+                    <li>Advanced degree in AI, ML, or Computer Science</li>
+                    <li>Experience with NLP and conversational AI</li>
+                    <li>Proficiency in Python, TensorFlow, or PyTorch</li>
+                    <li>Chatbot platform and voice recognition experience</li>
+                    <li>Workflow automation and integration skills</li>
+                  </ul>
+                </div>
+                <div class="card-actions">
+                  <button class="apply-btn" data-role="AI/ML Engineer">Apply Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="career-card">
+            <div class="card-front">
+              <h3>Marketing Automation Specialist</h3>
+              <p>Design and implement data-driven marketing campaigns</p>
+              <div class="career-tags">
+                <span class="tag">12 months</span>
+                <span class="tag">Professional</span>
+                <span class="tag">Remote / Edmonton</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-back-content">
+                <h3>Marketing Automation Specialist</h3>
+                <div class="career-details">
+                  <p><strong>Contract:</strong> 12 months</p>
+                  <p><strong>Engagement:</strong> Professional</p>
+                </div>
+                <div class="requirements-scroll">
+                  <h4>Requirements</h4>
+                  <ul>
+                    <li>3+ years in marketing automation and analytics</li>
+                    <li>Experience with marketing platforms and CRM systems</li>
+                    <li>Strong analytical skills and data interpretation</li>
+                    <li>Knowledge of privacy-compliant marketing practices</li>
+                    <li>A/B testing and conversion optimization experience</li>
+                  </ul>
+                </div>
+                <div class="card-actions">
+                  <button class="apply-btn" data-role="Marketing Automation Specialist">Apply Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="career-card">
+            <div class="card-front">
+              <h3>DevOps Engineer</h3>
+              <p>Manage infrastructure and deployment automation</p>
+              <div class="career-tags">
+                <span class="tag">18 months</span>
+                <span class="tag">Professional</span>
+                <span class="tag">Remote / Edmonton</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-back-content">
+                <h3>DevOps Engineer</h3>
+                <div class="career-details">
+                  <p><strong>Contract:</strong> 18 months</p>
+                  <p><strong>Engagement:</strong> Professional</p>
+                </div>
+                <div class="requirements-scroll">
+                  <h4>Requirements</h4>
+                  <ul>
+                    <li>Experience with cloud infrastructure and CI/CD</li>
+                    <li>Containerization and orchestration expertise</li>
+                    <li>Infrastructure as code and monitoring systems</li>
+                    <li>Security best practices and compliance</li>
+                    <li>System reliability and incident response skills</li>
+                  </ul>
+                </div>
+                <div class="card-actions">
+                  <button class="apply-btn" data-role="DevOps Engineer">Apply Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="career-card">
+            <div class="card-front">
+              <h3>Junior Developer</h3>
+              <p>Learn and grow with our automation team</p>
+              <div class="career-tags">
+                <span class="tag">8 months</span>
+                <span class="tag">Student</span>
+                <span class="tag">Remote / Edmonton</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-back-content">
+                <h3>Junior Developer</h3>
+                <div class="career-details">
+                  <p><strong>Contract:</strong> 8 months</p>
+                  <p><strong>Engagement:</strong> Student</p>
+                </div>
+                <div class="requirements-scroll">
+                  <h4>Requirements</h4>
+                  <ul>
+                    <li>Currently enrolled in Computer Science or related field</li>
+                    <li>Basic knowledge of web technologies</li>
+                    <li>Eagerness to learn automation and AI technologies</li>
+                    <li>Strong communication and teamwork skills</li>
+                    <li>Problem-solving mindset and attention to detail</li>
+                  </ul>
+                </div>
+                <div class="card-actions">
+                  <button class="apply-btn" data-role="Junior Developer">Apply Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="career-card">
+            <div class="card-front">
+              <h3>Business Analyst</h3>
+              <p>Bridge technology and business requirements</p>
+              <div class="career-tags">
+                <span class="tag">6 months</span>
+                <span class="tag">Professional</span>
+                <span class="tag">Remote / Edmonton</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-back-content">
+                <h3>Business Analyst</h3>
+                <div class="career-details">
+                  <p><strong>Contract:</strong> 6 months</p>
+                  <p><strong>Engagement:</strong> Professional</p>
+                </div>
+                <div class="requirements-scroll">
+                  <h4>Requirements</h4>
+                  <ul>
+                    <li>Experience in business process analysis</li>
+                    <li>Understanding of automation and workflow design</li>
+                    <li>Strong documentation and communication skills</li>
+                    <li>Ability to translate business needs to technical requirements</li>
+                    <li>Project management and stakeholder engagement experience</li>
+                  </ul>
+                </div>
+                <div class="card-actions">
+                  <button class="apply-btn" data-role="Business Analyst">Apply Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="careers-cta">
+          <h3>Don't See Your Role?</h3>
+          <p>We're always looking for talented individuals who share our passion for automation and innovation. Send us your CV and let's discuss how your skills can contribute to our mission.</p>
+          <a href="mailto:maas@multiagentautomationsystems.com?subject=General Application" class="cta-button">Send Your CV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Modal -->
+    <div class="modal-overlay" id="applicationModal" role="dialog" aria-modal="true">
+      <div class="modal-content application-modal">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3>Apply for Position</h3>
+        <form class="application-form" id="applicationForm">
+          <div class="form-group">
+            <label for="applicantName">Full Name</label>
+            <input type="text" id="applicantName" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="applicantEmail">Email</label>
+            <input type="email" id="applicantEmail" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="applicantRole">Position</label>
+            <input type="text" id="applicantRole" name="role" readonly>
+          </div>
+          <div class="form-group">
+            <label for="applicantMessage">Cover Letter / Message</label>
+            <textarea id="applicantMessage" name="message" rows="5" placeholder="Tell us about your experience and why you're interested in this role..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" id="cancelApplication">Cancel</button>
+            <button type="submit" class="btn-primary">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img src="public/maas-logo.jpg" alt="MAAS Logo" class="footer-logo" />
+            <p class="footer-tagline">Transforming businesses through intelligent automation solutions.</p>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4 class="footer-title">Resources</h4>
+              <ul class="footer-list">
+                <li><a href="#faq" class="footer-link">FAQ</a></li>
+                <li><a href="#careers" class="footer-link">Careers</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h4 class="footer-title">Company</h4>
+              <ul class="footer-list">
+                <li><a href="#technology" class="footer-link">Our Technology</a></li>
+                <li><a href="#departments" class="footer-link">Departments</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-newsletter">
+            <h4 class="footer-title">Stay Updated</h4>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Enter your email" class="newsletter-input" required />
+              <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-contact">
+          <h4 class="footer-title">Get In Touch</h4>
+          <div class="contact-info">
+            <p>Edmonton, Alberta, Canada</p>
+            <a href="mailto:maas@multiagentautomationsystems.com" class="footer-email">maas@multiagentautomationsystems.com</a>
+            <a href="tel:+17806800286" class="footer-phone">+1 (780) 680-0286</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">© 2025 Multi-Agent Automation Systems Inc. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cases Project Picker Modal -->
+    <div class="modal cases-picker" id="cases-picker-modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-label="Case Projects">
+        <button class="close" aria-label="Close">&times;</button>
+        <h3 class="modal-title">Case Projects</h3>
+        <div class="projects-grid" id="cases-projects-grid"></div>
+      </div>
+    </div>
+
+    <!-- Cases Slideshow Modal -->
+    <div class="modal cases-slideshow" id="cases-slideshow-modal" aria-hidden="true">
+      <div class="modal-content wide" role="dialog" aria-modal="true" aria-label="Case Slideshow">
+        <button class="close" aria-label="Close">&times;</button>
+        <div class="slide-stage">
+          <button class="nav prev" aria-label="Previous">&#10094;</button>
+          <div class="slide-container" id="cases-slide-container"></div>
+          <button class="nav next" aria-label="Next">&#10095;</button>
+        </div>
+        <div class="slide-meta">
+          <div class="slide-title" id="cases-slide-title"></div>
+          <div class="slide-counter" id="cases-slide-counter"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="/src/script.js"></script>
+    <script>
+      window.SUPABASE_PUBLIC_BASE = "https://tlgptkmiabukrvidzxyv.supabase.co/storage/v1/object/public/cases";
+    </script>
+    <script src="/js/cases.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.bindCasesButtons) window.bindCasesButtons();
+      });
+    </script>
+  </body>
+</html>

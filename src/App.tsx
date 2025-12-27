@@ -653,9 +653,9 @@ function App() {
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Position</label>
                 <select className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-yellow-500 focus:outline-none">
-                  <option>Network Infrastructure Engineer</option>
-                  <option>Voice Systems Developer</option>
-                  <option>Electronic Operations Specialist</option>
+                  <option>Network Address Engineer</option>
+                  <option>Verbal Address Specialist</option>
+                  <option>Electronic Address Specialist</option>
                   <option>Other</option>
                 </select>
               </div>

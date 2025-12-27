@@ -24,81 +24,88 @@ function App() {
       id: 'network-address',
       title: 'Network Address Department',
       subtitle: 'OWNERSHIP OF PLACE',
-      description: 'Own your domain. Control your infrastructure. Establish your permanent place on the World Network. True digital independence begins with owning your Network Address.',
+      description: 'The Network Address Department exists to make you the owner of your online address. True digital independence begins with owning your domain, running your infrastructure, and controlling your front-end and back-end systems. Platforms provide borrowed addresses. Network Address provides an owned address.',
       email: 'network@multiagentautomationsystems.com',
       icon: Building2,
       results: [
         'Domain ownership and management',
-        'Hosting infrastructure control',
-        'Front-end and back-end systems',
+        'Hosting infrastructure',
+        'Front-end systems',
+        'Back-end systems',
+        'Servers and compute',
         'Network access control',
-        'Extended connectivity solutions'
+        'Extended connectivity (including satellite concepts)'
       ],
-      philosophy: 'Owning and operating your own Network Address is the best and most correct way to exist online.'
+      philosophy: 'Owning and operating your own Network Address is the best and most correct way to exist online. Every entity should be able to say: "This is my place on the World Network. This is who I am."'
     },
     {
       id: 'verbal-address',
       title: 'Verbal Address Department',
       subtitle: 'SOUND',
-      description: 'How you speak, how you are heard, how you conduct conversations digitally. Voice bots, phone systems, and conversational agents that represent your audible identity.',
+      description: 'Verbal Address is sound. This department governs how an entity speaks, is heard, and conducts conversations digitally. Voice bots, phone systems, and conversational agents that represent your audible identity.',
       email: 'verbal@multiagentautomationsystems.com',
       icon: Mic,
       results: [
         'Voice bots and conversational agents',
         'Phone systems and VOIP',
         'Phone lifecycle management',
-        'Production, repair, secure destruction',
-        'Digital conversation governance'
+        'Production',
+        'Repair',
+        'Secure destruction'
       ],
-      philosophy: 'Verbal Address is sound - governing how an entity speaks and is heard in the digital world.'
+      philosophy: 'Verbal Address is sound. This department represents the audible identity of the entity.'
     },
     {
       id: 'electronic-address',
       title: 'Electronic Address Department',
       subtitle: 'MAIL · MEET · DOCUMENT',
-      description: 'Formal, written, and operational digital interaction. Email automation, meeting systems, and documentation platforms for your operational address.',
+      description: 'Electronic Address exists for Mailing, Meeting, and Documentation. It governs formal, written, and operational digital interaction.',
       email: 'electronic@multiagentautomationsystems.com',
       icon: Mail,
       results: [
         'Email systems and automation',
         'Automatic quoting systems',
-        'Online documentation platforms',
+        'Online documentation',
         'Digital forms and workflows',
-        'Video conferencing and meeting systems'
+        'Online meeting schedulers',
+        'Video conferencing and meeting platforms'
       ],
-      philosophy: 'Electronic Address governs formal, written, and operational digital interaction.'
+      philosophy: 'This department is the operational address of the entity.'
     },
     {
       id: 'social-address',
       title: 'Social Address Department',
       subtitle: 'REACH, NOT OWNERSHIP',
-      description: 'Social platforms provide reach and discovery, not ownership. Use them as a bridge to drive attention back to your owned Network Address.',
+      description: 'Social Address exists because platforms have reach, not because they are owned. Social platforms are useful for exposure, discovery, and audience growth. They are not owned addresses.',
       email: 'social@multiagentautomationsystems.com',
       icon: Users,
       results: [
-        'Social media account management',
+        'Social media accounts',
         'Platform-based marketing strategies',
-        'Public digital profile optimization',
-        'Brand visibility and messaging',
+        'Public digital profiles',
+        'Messaging and brand visibility',
         'Smart Suites (First Product)'
       ],
-      philosophy: 'Social Address is a bridge, not a home. Use platforms for exposure, then refocus on your Network Address.'
+      philosophy: 'Independent businesses should use social platforms to achieve recognition, then progressively refocus attention on their own Network Address. Social Address is a bridge, not a home.'
     },
     {
       id: 'remote-address',
       title: 'Remote Address Department',
       subtitle: 'LEGACY & BENEFICIAL KNOWLEDGE',
-      description: 'Where you teach, preserve, and pass forward beneficial knowledge. Your digital institution that persists beyond presence - your own academy of knowledge.',
+      description: 'Remote Address is separate from Network Address. While Network Address shows who you are, Remote Address is where you teach, preserve, and pass forward beneficial knowledge. Think of Remote Address as your own school, academy, or autonomous knowledge environment.',
       email: 'remote@multiagentautomationsystems.com',
       icon: Cloud,
       results: [
-        'Intelligence bots and learning systems',
+        'Intelligence bots',
         'Online degree and licensing programs',
         'Learning Management Systems (LMS)',
         'Business founding and incorporation',
-        'Secure digital vaults and privacy systems'
+        'Online storage systems',
+        'Password management',
+        'Privacy systems',
+        'Secure digital vaults'
       ],
-      philosophy: 'What you teach and preserve as beneficial knowledge becomes your digital legacy - your Remote Address.'
+      philosophy: 'A fundamental part of any individual\'s or organization\'s legacy is the beneficial knowledge they provide. What you teach, document, and preserve as beneficial knowledge becomes part of your digital legacy — and that legacy is your Remote Address.'
     }
   ];
 
@@ -313,11 +320,11 @@ function App() {
                 <p className="text-gray-400">Complete control over your digital infrastructure</p>
               </div>
               <div className="bg-gray-900 p-6 rounded-lg">
-                <h3 className="text-yellow-500 font-semibold mb-2">You control your identity</h3>
+                <h3 className="text-yellow-500 font-semibold mb-2">You control your identity on the network</h3>
                 <p className="text-gray-400">Autonomous governance of your network presence</p>
               </div>
               <div className="bg-gray-900 p-6 rounded-lg">
-                <h3 className="text-yellow-500 font-semibold mb-2">You define your existence</h3>
+                <h3 className="text-yellow-500 font-semibold mb-2">You can clearly tell the world who you are</h3>
                 <p className="text-gray-400">Clear communication of who you are and where you exist</p>
               </div>
             </div>

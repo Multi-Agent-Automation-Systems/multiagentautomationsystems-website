@@ -1657,6 +1657,28 @@ textarea:focus {
 }
 
 /* Careers Section */
+
+.careers-hidden {
+  display: none;
+}
+
+.careers-coming-soon {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.careers-coming-soon h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.careers-coming-soon p {
+  font-size: 1.05rem;
+  opacity: 0.85;
+}
+
 .careers {
   padding: 100px 0;
   background: #1a1a1a;

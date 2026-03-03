@@ -1074,16 +1074,21 @@
   <script>
   // Get the form element
   const form = document.getElementById("newsletter-form");
+  console.log("Form found:", form);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent page reload
+    console.log("Form submitted");
 
     const emailInput = document.getElementById("newsletter-email");
+    console.log("Input found:", emailInput);
     const email_value = emailInput.value.trim();
+    console.log("Email value:", email_value);
 
     if (!email_value) return; // Just in case
 
     // Insert into Supabase
+    console.log("Supabase client:", supabaseClient);
     const { error } = await supabaseClient
       .from("email_subscriptions")
       .insert([{ email:email_value }]);

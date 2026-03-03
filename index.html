@@ -1079,14 +1079,14 @@
     event.preventDefault(); // Prevent page reload
 
     const emailInput = document.getElementById("newsletter-email");
-    const email = emailInput.value.trim();
+    const email_value = emailInput.value.trim();
 
-    if (!email) return; // Just in case
+    if (!email_value) return; // Just in case
 
     // Insert into Supabase
     const { error } = await supabaseClient
       .from("email_subscriptions")
-      .insert([{ email }]);
+      .insert([{ email:email_value }]);
 
     if (error) {
       // 23505 = unique constraint violation

@@ -825,6 +825,42 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+async function preloadCaseThumbnails() {
+  const departments = ['websites', 'ai-bots', 'workflows', 'marketing', 'remote'];
+
+  for (const dept of departments) {
+    try {
+      const response = await fetch(
+        `${window.SUPABASE_PUBLIC_BASE}/${dept}/manifest.json`
+      );
+      if (!response.ok) continue;
+
+      const data = await response.json();
+      if (!data.items || data.items.length === 0) continue;
+
+      const firstItem = data.items[0];
+      const btn = document.querySelector(`[data-inspect-cases="${dept}"]`);
+      if (!btn) continue;
+
+      const animationDiv = btn.closest('.department-animation');
+      if (!animationDiv) continue;
+
+      // Inject thumbnail behind the button
+      const thumb = document.createElement('img');
+      thumb.src = firstItem.thumbnail || firstItem.url;
+      thumb.alt = firstItem.title;
+      thumb.className = 'cases-preview-thumb';
+      animationDiv.insertBefore(thumb, btn);
+
+      // Update button label with count
+      btn.textContent = `View ${data.items.length} Case${data.items.length > 1 ? 's' : ''}`;
+
+    } catch (err) {
+      // No cases yet — leave animation as-is
+    }
+  }
+}
+
 // Initialize animations when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize circuit animation
@@ -840,6 +876,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.bindCasesButtons) {
     window.bindCasesButtons();
   }
+
+  // Initialize thumbnails for cases
+  preloadCaseThumbnails();
   
   // Intersection Observer for fade-in animations
   if (!prefersReducedMotion) {

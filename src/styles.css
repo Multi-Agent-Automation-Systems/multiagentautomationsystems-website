@@ -1944,11 +1944,12 @@ textarea:focus {
    1️⃣ Footer content – 4‑column grid
    ------------------------------------------------- */
 .footer-content {
-  display:grid;
-  /* four equal columns – adjust fractions if you want one column wider */
-  grid-template-columns: repeat(4, 1fr);
-  gap:2rem;                     /* slightly smaller than original */
-  margin-bottom:3rem;
+  display: grid;
+  /* 1 × brand, 2 × links, 1 × contact, 1 × newsletter */
+  /* Change the third value (contact) to 2fr – it will be twice as wide as the others */
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+  gap: 2rem;               /* keep your preferred gap */
+  margin-bottom: 3rem;
 }
 
 /* -------------------------------------------------

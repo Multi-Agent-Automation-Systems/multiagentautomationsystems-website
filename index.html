@@ -980,14 +980,19 @@
             </div>
           </div>
 
-          <div class="footer-newsletter">
-            <h4 class="footer-title">Stay Updated</h4>
-            <form class="newsletter-form">
-              <input type="email" placeholder="Enter your email" class="newsletter-input" required />
-              <button type="submit" class="newsletter-button">Subscribe</button>
-            </form>
-          </div>
-        </div>
+<div class="footer-newsletter">
+  <h4 class="footer-title">Stay Updated</h4>
+  <form class="newsletter-form" id="newsletter-form">
+    <input 
+      type="email" 
+      placeholder="Enter your email" 
+      class="newsletter-input" 
+      id="newsletter-email"
+      required 
+    />
+    <button type="submit" class="newsletter-button">Subscribe</button>
+  </form>
+</div>
 
         <div class="footer-contact">
           <h4 class="footer-title">Get In Touch</h4>
@@ -1056,5 +1061,47 @@
         v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
     })(document, 'script');
   </script>
-  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const supabaseUrl = "https://tlgptkmiabukrvidzxyv.supabase.co";
+  const supabaseKey = "sb_publishable_2HTCdbwPIifsMwqHPdHvlw_2OjRYQm7";
+
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+
+  <script>
+  // Get the form element
+  const form = document.getElementById("newsletter-form");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); // Prevent page reload
+
+    const emailInput = document.getElementById("newsletter-email");
+    const email = emailInput.value.trim();
+
+    if (!email) return; // Just in case
+
+    // Insert into Supabase
+    const { error } = await supabase
+      .from("email_subscriptions")
+      .insert([{ email }]);
+
+    if (error) {
+      // 23505 = unique constraint violation
+      if (error.code === "23505") {
+        alert("You're already subscribed!");
+      } else {
+        alert("Something went wrong. Please try again.");
+        console.error(error);
+      }
+    } else {
+      alert("Thanks for subscribing!");
+      emailInput.value = ""; // Clear input
+    }
+  });
+</script>
+
+      </body>
 </html>

@@ -1,3 +1,8 @@
+const supabaseClient = window.supabase.createClient(
+  "https://tlgptkmiabukrvidzxyv.supabase.co",
+  "sb_publishable_2HTCdbwPIifsMwqHPdHvlw_2OjRYQm7"
+);
+
 // Check for reduced motion preference
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -513,13 +518,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const newsletterForm = document.querySelector('.newsletter-form');
 
 if (newsletterForm) {
-  newsletterForm.addEventListener('submit', (e) => {
+  newsletterForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = e.target.querySelector('.newsletter-input').value;
-    
-    if (email) {
-      showToast('Thank you for subscribing! We\'ll keep you updated on our latest automation solutions.');
-      e.target.querySelector('.newsletter-input').value = '';
+
+    const emailInput = newsletterForm.querySelector('.newsletter-input');
+    const email_value = emailInput.value.trim();
+
+    if (!email_value) return;
+
+    const { error } = await supabaseClient
+      .from("email_subscriptions")
+      .insert([{ email: email_value }]);
+
+    if (error) {
+      if (error.code === "23505") {
+        showToast("You're already subscribed!");
+      } else {
+        showToast("Something went wrong. Please try again.");
+        console.error(error);
+      }
+    } else {
+      showToast("Thanks for subscribing! We'll keep you updated.");
+      emailInput.value = "";
     }
   });
 }

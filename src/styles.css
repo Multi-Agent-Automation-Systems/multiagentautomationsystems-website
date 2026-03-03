@@ -927,6 +927,22 @@ textarea:focus {
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
+.cases-preview-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  z-index: 1; /* behind button, above background animation */
+}
+
+.department-animation:hover .cases-preview-thumb {
+  opacity: 0.75;
+}
+
 /* Department Background Animations */
 .websites-bg-animation {
   position: absolute;

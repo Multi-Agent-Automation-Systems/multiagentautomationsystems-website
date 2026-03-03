@@ -1931,66 +1931,95 @@ textarea:focus {
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
-/* Footer */
+/* -------------------------------------------------
+   Footer – overall container
+   ------------------------------------------------- */
 .footer {
-  background: #222;
-  padding: 60px 0 20px;
-  border-top: 1px solid #333;
+  background:#222;
+  padding:60px 0 20px;
+  border-top:1px solid #333;
 }
 
+/* -------------------------------------------------
+   1️⃣ Footer content – 4‑column grid
+   ------------------------------------------------- */
 .footer-content {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
+  display:grid;
+  /* four equal columns – adjust fractions if you want one column wider */
+  grid-template-columns: repeat(4, 1fr);
+  gap:2rem;                     /* slightly smaller than original */
+  margin-bottom:3rem;
 }
 
+/* -------------------------------------------------
+   2️⃣ Assign each block to a grid cell (optional naming)
+   ------------------------------------------------- */
+.footer-brand      { /* grid-area defaults to column 1 */ }
+.footer-links      { /* column 2 */ }
+.footer-contact    { /* column 3 */ }
+.footer-newsletter { /* column 4 */ }
+
+/* -------------------------------------------------
+   3️⃣ Existing component styles (unchanged)
+   ------------------------------------------------- */
 .footer-brand {
-  display: flex;
-  flex-direction: column;
+  display:flex;
+  flex-direction:column;
 }
-
 .footer-logo {
-  height: 50px;
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 1rem;
+  height:50px;
+  width:auto;
+  object-fit:contain;
+  margin-bottom:1rem;
 }
-
 .footer-tagline {
-  color: #b0b0b0;
-  font-size: 0.9rem;
+  color:#b0b0b0;
+  font-size:.9rem;
 }
 
+/* Links block – keep inner 2‑column grid */
 .footer-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.5rem;                 /* a bit tighter */
 }
-
 .footer-title {
-  color: #d4af37;
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  color:#d4af37;
+  font-size:1.125rem;
+  font-weight:600;
+  margin-bottom:1rem;
 }
-
-.footer-list {
-  list-style: none;
-}
-
-.footer-list li {
-  margin-bottom: 0.5rem;
-}
-
+.footer-list { list-style:none; }
+.footer-list li { margin-bottom:.5rem; }
 .footer-link {
-  color: #b0b0b0;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  color:#b0b0b0;
+  text-decoration:none;
+  transition:color .3s ease;
 }
+.footer-link:hover { color:#d4af37; }
 
-.footer-link:hover {
-  color: #d4af37;
+/* -------------------------------------------------
+   4️⃣ Responsive – stack on small screens
+   ------------------------------------------------- */
+@media (max-width:768px) {
+  .footer-content {
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+  }
+
+  .footer-links {
+    grid-template-columns:1fr;   /* single column on mobile */
+  }
+
+  .footer-brand,
+  .footer-links,
+  .footer-contact,
+  .footer-newsletter {
+    min-width:auto;              /* let them fill the width */
+  }
+
+  .footer-brand { text-align:center; }
 }
 
 .newsletter-form {
